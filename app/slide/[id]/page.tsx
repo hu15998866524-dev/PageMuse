@@ -32,22 +32,22 @@ export default async function SlideDetailPage({
       />
       <section className="grid gap-6 xl:grid-cols-[minmax(0,1.2fr)_380px]">
         <SlidePreview slide={slide} large />
-        <div className="rounded-[32px] border border-line bg-panel p-7">
-          <div className="text-sm text-soft">{formatDate(slide.createdAt)} 收录</div>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-ink">{slide.title}</h1>
-          <p className="mt-4 text-sm leading-7 text-muted">{slide.summary}</p>
+        <div className="rounded-[32px] border border-white/10 bg-black/58 p-7 text-white shadow-card backdrop-blur-xl">
+          <div className="text-sm text-white/45">{formatDate(slide.createdAt)} 收录</div>
+          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white">{slide.title}</h1>
+          <p className="mt-4 text-sm leading-7 text-white/82">{slide.summary}</p>
           <div className="mt-6 flex flex-wrap gap-2">
             {slide.tags.map((tag) => (
               <Tag key={tag} label={tag} href={`/search?q=${encodeURIComponent(tag)}`} />
             ))}
           </div>
-          <div className="mt-6 space-y-4 rounded-[24px] bg-sand p-5 text-sm text-muted">
+          <div className="mt-6 space-y-4 rounded-[24px] border border-white/10 bg-white/6 p-5 text-sm text-white/82">
             <div>
-              <span className="text-soft">页型</span>
-              <div className="mt-1 text-ink">{categoryMeta[slide.category].label}</div>
+              <span className="text-white/45">页型</span>
+              <div className="mt-1 text-white">{categoryMeta[slide.category].label}</div>
             </div>
             <div>
-              <span className="text-soft">适用场景</span>
+              <span className="text-white/45">适用场景</span>
               <div className="mt-1 flex flex-wrap gap-2">
                 {slide.scenes.map((scene) => (
                   <Tag key={scene} label={scene} href={`/scene/${sceneMeta[scene].slug}`} />
@@ -55,8 +55,8 @@ export default async function SlideDetailPage({
               </div>
             </div>
             <div>
-              <span className="text-soft">风格</span>
-              <div className="mt-1 text-ink">{slide.style}</div>
+              <span className="text-white/45">风格</span>
+              <div className="mt-1 text-white">{slide.style}</div>
             </div>
           </div>
           <div className="mt-6">
@@ -78,12 +78,12 @@ export default async function SlideDetailPage({
       <section className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink">相似推荐</h2>
-            <p className="mt-2 text-sm text-muted">基于页型、标签与场景匹配的推荐页。</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-white">相似推荐</h2>
+            <p className="mt-2 text-sm text-white/62">基于页型、标签与场景匹配的推荐页。</p>
           </div>
           <Link
             href={`/category/${slide.category}`}
-            className="inline-flex items-center gap-2 text-sm text-muted transition hover:text-ink"
+            className="inline-flex items-center gap-2 text-sm text-white/70 transition hover:text-white"
           >
             查看同类页型
             <ArrowRight className="h-4 w-4" />

@@ -35,30 +35,48 @@ const toneMap: Record<string, string> = {
   "course-columns": "from-slate-50 via-white to-blue-50 text-ink",
 };
 
-export function SlidePreview({ slide, large = false }: { slide: Slide; large?: boolean }) {
+export function SlidePreview({
+  slide,
+  large = false,
+  imageOnly = false,
+  fill = false,
+  className,
+}: {
+  slide: Slide;
+  large?: boolean;
+  imageOnly?: boolean;
+  fill?: boolean;
+  className?: string;
+}) {
   const cardTone = toneMap[slide.coverImage] ?? "from-white via-stone-50 to-zinc-100 text-ink";
   const isRealImage = slide.coverImage.startsWith("/");
-  const imageFitClass = isRealImage ? "object-contain bg-white" : "object-cover";
+  const imageFitClass = isRealImage ? (fill || large ? "object-cover bg-white" : "object-contain bg-white") : "object-cover";
+  const imageScaleClass = large ? "scale-[1.035]" : fill ? "scale-[1.015]" : "";
 
   return (
     <div
       className={cn(
         "relative overflow-hidden rounded-[24px] border border-line bg-gradient-to-br shadow-sm",
         cardTone,
-        large ? "aspect-video p-8" : "aspect-video p-5",
+        fill ? "h-full w-full p-0" : large ? "aspect-video p-8" : "aspect-video p-5",
+        className,
       )}
     >
       {isRealImage ? (
         <>
-          <img src={slide.coverImage} alt={slide.title} className={cn("absolute inset-0 h-full w-full", imageFitClass)} />
+          <img
+            src={slide.coverImage}
+            alt={slide.title}
+            className={cn("absolute inset-0 h-full w-full origin-center", imageFitClass, imageScaleClass)}
+          />
         </>
       ) : null}
-      <div className={cn("absolute inset-0 opacity-60", isRealImage ? "hidden" : "block")}>
+      <div className={cn("absolute inset-0 opacity-60", isRealImage || imageOnly ? "hidden" : "block")}>
         <div className="absolute left-6 top-6 h-24 w-24 rounded-full border border-current/10" />
         <div className="absolute right-8 top-10 h-16 w-16 rounded-full bg-current/5" />
         <div className="absolute bottom-6 left-6 right-6 h-px bg-current/10" />
       </div>
-      <div className={cn("relative flex h-full flex-col justify-between", isRealImage ? "hidden" : "")}>
+      <div className={cn("relative flex h-full flex-col justify-between", isRealImage || imageOnly ? "hidden" : "")}>
         <div className="flex items-start justify-between gap-4">
           <div className="max-w-[70%]">
             <div className="text-[10px] uppercase tracking-[0.3em] opacity-60">

@@ -17,15 +17,15 @@ export function TopNav() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-sand/90 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-8">
+    <header className="sticky top-0 z-50 px-3 pt-3 md:px-4 md:pt-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-[28px] border border-white/10 bg-black/42 px-5 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl md:px-7">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-line bg-panel text-sm font-semibold text-ink">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/12 bg-white/8 text-sm font-semibold text-white">
             页
           </div>
           <div>
-            <div className="text-sm text-soft">PPT 优秀单页灵感库</div>
-            <div className="text-base font-semibold tracking-tight text-ink">Single Slide Reference</div>
+            <div className="text-sm text-white/45">PPT 优秀单页灵感库</div>
+            <div className="text-base font-semibold tracking-tight text-white">Single Slide Reference</div>
           </div>
         </Link>
         <nav className="hidden items-center gap-2 md:flex">
@@ -41,8 +41,8 @@ export function TopNav() {
                 className={cn(
                   "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition",
                   active
-                    ? "bg-charcoal text-sand"
-                    : "text-muted hover:bg-panel hover:text-ink",
+                    ? "bg-white text-ink"
+                    : "text-white/92 hover:bg-white/10 hover:text-white",
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -53,7 +53,7 @@ export function TopNav() {
         </nav>
         <Link
           href="/search"
-          className="inline-flex items-center gap-2 rounded-full border border-line bg-panel px-4 py-2 text-sm text-muted transition hover:border-accent hover:text-ink"
+          className="inline-flex items-center gap-2 rounded-full border border-white/18 bg-white/8 px-4 py-2 text-sm text-white/92 transition hover:border-accent hover:bg-white/12 hover:text-white"
         >
           <Search className="h-4 w-4" />
           <span className="hidden sm:inline">搜索标题、标签、场景</span>

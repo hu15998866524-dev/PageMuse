@@ -11,7 +11,12 @@ html {
 }
 
 body {
-  background: #f6f2ea;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.08), transparent 0 18%),
+    radial-gradient(circle at 82% 12%, rgba(255, 255, 255, 0.06), transparent 0 16%),
+    radial-gradient(circle at top left, rgba(188, 248, 49, 0.06), transparent 24%),
+    radial-gradient(circle at top right, rgba(166, 157, 249, 0.08), transparent 30%),
+    linear-gradient(180deg, #060709 0%, #0b0c0f 42%, #08090b 100%);
   color: #1e1f1c;
 }
 
@@ -30,4 +35,51 @@ body {
 
 .feed-scroll::-webkit-scrollbar {
   display: none;
+}
+
+.site-bg {
+  position: relative;
+}
+
+.site-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.028), transparent 22%, transparent 78%, rgba(255, 255, 255, 0.022));
+  background-size: 28px 28px, 28px 28px, 100% 100%;
+  mask-image: radial-gradient(circle at center, black 68%, transparent 100%);
+  opacity: 0.5;
+}
+
+.site-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.045), transparent 0 2px, transparent 2px),
+    radial-gradient(circle at 78% 32%, rgba(255, 255, 255, 0.035), transparent 0 1.5px, transparent 1.5px),
+    radial-gradient(circle at 34% 78%, rgba(255, 255, 255, 0.03), transparent 0 1.5px, transparent 1.5px),
+    repeating-linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.024) 0,
+      rgba(255, 255, 255, 0.024) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      -125deg,
+      rgba(255, 255, 255, 0.018) 0,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  background-size: 240px 240px, 320px 320px, 280px 280px, 180px 180px, 220px 220px;
+  background-position: 0 0, 100% 0, 0 100%, 0 0, 0 0;
+  mix-blend-mode: soft-light;
+  opacity: 0.2;
 }

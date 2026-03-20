@@ -4,12 +4,43 @@ import { SlideGrid } from "@/components/slide-grid";
 import { Tag } from "@/components/tag";
 import { categoryMeta, sceneMeta } from "@/lib/constants";
 import { slides } from "@/lib/data";
+import { slideImageDimensions } from "@/lib/slide-image-dimensions";
+
+export const dynamic = "force-dynamic";
+
+function shuffleArray<T>(items: T[]) {
+  const result = [...items];
+
+  for (let index = result.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [result[index], result[randomIndex]] = [result[randomIndex], result[index]];
+  }
+
+  return result;
+}
 
 export default function HomePage() {
-  const featuredSlides = slides.filter((slide) => slide.id <= "slide-004").slice(0, 4);
-  const latestSlides = [...slides]
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    .slice(0, 6);
+  const imageSlides = slides.filter((slide) => slide.coverImage.startsWith("/images/slides/"));
+  const targetRatio = 16 / 9;
+  const scoredSlides = imageSlides.map((slide) => {
+    const size = slideImageDimensions[slide.id];
+    const ratio = size ? size.width / size.height : 1;
+    const score = Math.abs(ratio - targetRatio) + (ratio < 1.45 ? 1 : 0);
+
+    return { slide, score };
+  });
+
+  const preferredSlides = scoredSlides.filter(({ score }) => score <= 0.32).map(({ slide }) => slide);
+  const secondarySlides = scoredSlides
+    .filter(({ score }) => score > 0.32 && score <= 0.75)
+    .map(({ slide }) => slide);
+  const fallbackSlides = scoredSlides.filter(({ score }) => score > 0.75).map(({ slide }) => slide);
+
+  const heroSlides = [...shuffleArray(preferredSlides), ...shuffleArray(secondarySlides), ...shuffleArray(fallbackSlides)];
+
+  const featuredSlides = heroSlides.slice(0, 10);
+  const featuredIds = new Set(featuredSlides.map((slide) => slide.id));
+  const masonrySlides = imageSlides.filter((slide) => !featuredIds.has(slide.id));
 
   return (
     <div className="space-y-14">
@@ -45,7 +76,7 @@ export default function HomePage() {
 
       <section className="space-y-6">
         <SectionHeader title="最新单页" description="持续补充新的页型与场景参考，保持真实内容感。" />
-        <SlideGrid slides={latestSlides} />
+        <SlideGrid slides={masonrySlides} variant="masonry" />
       </section>
     </div>
   );
