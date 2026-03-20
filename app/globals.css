@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f6f2ea;
+  color: #1e1f1c;
+}
+
+* {
+  border-color: #d9d2c6;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.feed-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.feed-scroll::-webkit-scrollbar {
+  display: none;
+}
