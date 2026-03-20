@@ -3,6 +3,7 @@ import "./globals.css";
 import { PageShell } from "@/components/page-shell";
 import { CollectionsProvider } from "@/components/providers/collections-provider";
 import { ToastProvider } from "@/components/providers/toast-provider";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: "PageMuse",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <PageShell>{children}</PageShell>
           </ToastProvider>
         </CollectionsProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
