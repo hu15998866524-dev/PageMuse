@@ -1,4 +1,4 @@
-# PPT 优秀单页灵感库 Web MVP
+# PageMuse
 
 一个帮助用户按场景、页型与风格检索优秀 PPT 单页的 Web MVP，面向 PPT 小白、初级设计师与职场汇报人群。
 
