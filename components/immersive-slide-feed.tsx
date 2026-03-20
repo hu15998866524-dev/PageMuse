@@ -12,8 +12,8 @@ export function ImmersiveSlideFeed({ slides }: { slides: Slide[] }) {
     <section className="-mx-5 md:-mx-8">
       <div className="feed-scroll h-[calc(100vh-7.5rem)] overflow-y-auto snap-y snap-mandatory scroll-smooth px-3 pt-3 md:px-4 md:pt-4">
         {slides.map((slide, index) => (
-          <article key={slide.id} className="flex min-h-[calc(100vh-7.5rem)] snap-start items-center justify-center py-0">
-            <div className="group relative w-full self-center">
+          <article key={slide.id} className="flex min-h-[calc(100vh-7.5rem)] snap-start items-start justify-center py-0">
+            <div className="group relative w-full self-start">
               <div className="relative aspect-video w-full max-h-[calc(100vh-8.75rem)] overflow-hidden rounded-[30px] shadow-[0_40px_120px_rgba(0,0,0,0.42)]">
                 <Link href={`/slide/${slide.id}`} className="absolute inset-0 block">
                   <div className="absolute left-6 top-6 z-10 rounded-full border border-white/10 bg-black/28 px-4 py-2 text-xs uppercase tracking-[0.24em] text-white backdrop-blur">

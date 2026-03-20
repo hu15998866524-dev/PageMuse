@@ -5,8 +5,8 @@ import { CollectionsProvider } from "@/components/providers/collections-provider
 import { ToastProvider } from "@/components/providers/toast-provider";
 
 export const metadata: Metadata = {
-  title: "PPT 优秀单页灵感库",
-  description: "按场景、页型与风格筛选优秀 PPT 单页，快速理解结构并建立自己的参考库。",
+  title: "PageMuse",
+  description: "PageMuse 按场景、页型与风格筛选优秀 PPT 单页，帮助你快速建立参考与灵感库。",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

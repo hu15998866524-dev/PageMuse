@@ -16,16 +16,20 @@ const links = [
 export function TopNav() {
   const pathname = usePathname();
 
+  if (pathname === "/") {
+    return null;
+  }
+
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 md:px-4 md:pt-4">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-[28px] border border-white/10 bg-black/42 px-5 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl md:px-7">
         <Link href="/" className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/12 bg-white/8 text-sm font-semibold text-white">
-            页
+            PM
           </div>
           <div>
-            <div className="text-sm text-white/45">PPT 优秀单页灵感库</div>
-            <div className="text-base font-semibold tracking-tight text-white">Single Slide Reference</div>
+            <div className="text-sm text-white/45">PPT Page Inspiration Library</div>
+            <div className="text-base font-semibold tracking-tight text-white">PageMuse</div>
           </div>
         </Link>
         <nav className="hidden items-center gap-2 md:flex">
